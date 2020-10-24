@@ -1,0 +1,3 @@
+/home/sergey/code/gtk/CMakeFiles/edit_cache.dir
+/home/sergey/code/gtk/CMakeFiles/rebuild_cache.dir
+/home/sergey/code/gtk/CMakeFiles/hellogtk.dir
