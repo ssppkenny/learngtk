@@ -19,18 +19,27 @@ static gboolean delete_event(GtkWidget *window, GdkEvent *event, gpointer data) 
 }
 
 int main(int argc, char *argv[]){
-    GtkWidget *window, *label, *button;
+    GtkWidget *window, *label, *button, *vbox;
 
     gtk_init(&argc, &argv);
 
+    
+    
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Hello World!");
     gtk_container_set_border_width(GTK_CONTAINER(window), 10);
     gtk_widget_set_size_request(window, 200,100);
     gtk_window_set_resizable((GtkWindow*)window, FALSE);
 
+    vbox = gtk_vbox_new(TRUE, 2);
+
+    label = gtk_label_new("Hello World label");
+    gtk_label_set_selectable(GTK_LABEL(label), FALSE);
+
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), label);
+
     button = gtk_button_new_with_label("My Button");
-    gtk_container_add(GTK_CONTAINER(window), button);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), button);
     int n = 100;
 
     
@@ -40,10 +49,7 @@ int main(int argc, char *argv[]){
     g_signal_connect(G_OBJECT(window), "delete_event", G_CALLBACK(delete_event), NULL);
     g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(key_press), window);
 
-    //label = gtk_label_new("Hello World label");
-    //gtk_label_set_selectable(GTK_LABEL(label), FALSE);
-
-    //gtk_container_add(GTK_CONTAINER(window), label);
+    gtk_container_add(GTK_CONTAINER(window), vbox);
 
 
     gtk_widget_show_all(window);
